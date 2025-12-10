@@ -1,0 +1,202 @@
+--[[
+    VD HUB v8.8.8 - Obfuscated Loader
+    Protected Version
+]]
+
+local _0x1a2b3c = string.char
+local _0x4d5e6f = table.concat
+local _0x7g8h9i = tonumber
+local _0xDecode = function(_0xStr)
+    local _0xResult = {}
+    for _0xByte in _0xStr:gmatch("..") do
+        _0xResult[#_0xResult + 1] = _0x1a2b3c(_0x7g8h9i(_0xByte, 16))
+    end
+    return _0x4d5e6f(_0xResult)
+end
+
+local _0xServices = {
+    _0xPlayers = _0xDecode("506c6179657273"),
+    _0xHttp = _0xDecode("4874747053657276696365")
+}
+
+local _0xMethods = {
+    _0xGetService = _0xDecode("47657453657276696365"),
+    _0xHttpGet = _0xDecode("48747470476574"),
+    _0xIsLoaded = _0xDecode("49734c6f61646564"),
+    _0xLoaded = _0xDecode("4c6f61646564"),
+    _0xWait = _0xDecode("57616974"),
+    _0xLocalPlayer = _0xDecode("4c6f63616c506c61796572"),
+    _0xGetFullName = _0xDecode("47657446756c6c4e616d65")
+}
+
+local _0xURLs = {
+    _0xRayfield1 = _0xDecode("68747470733a2f2f7369726975732e6d656e752f726179666965c64"),
+    _0xRayfield2 = _0xDecode("68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f73686c6578776172652f526179666965c6c642f6d61696e2f736f75726365"),
+    _0xCore = "https://api.junkie-development.de/api/v1/luascripts/public/7d7e58707ddb1b319cfcdf562f993f2511628f26926774c9c912414635c1c2ff/download"
+}
+
+(function()
+    local _G1, _G2, _G3 = game, getgenv, rawset
+    local _T1, _T2, _T3 = task, pcall, loadstring
+    
+    if not _G1:IsLoaded() then 
+        _G1.Loaded:Wait() 
+    end
+    
+    repeat _T1.wait() until _G1:GetService("Players").LocalPlayer
+    repeat _T1.wait() until _G1:GetService("Players").LocalPlayer:GetFullName()
+    
+    local _RF = nil
+    local _S1 = _T2(function()
+        _RF = _T3(_G1:HttpGet('https://sirius.menu/rayfield'))()
+    end)
+    
+    if not _S1 or not _RF then
+        local _S2 = _T2(function()
+            _RF = _T3(_G1:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+        end)
+        if not _S2 or not _RF then
+            return
+        end
+    end
+    
+    _G2().Rayfield = _RF
+    _G2()._VDHUB_RAYFIELD_LOADED = _RF
+    _G3(_G, "Rayfield", _RF)
+    _G3(_G, "_VDHUB_RAYFIELD_LOADED", _RF)
+    
+    if shared then
+        shared.Rayfield = _RF
+        shared._VDHUB_RAYFIELD_LOADED = _RF
+    end
+    
+    _G2()._VDHUB_UI_STRINGS = {
+        [_0xDecode("56657273696f6e")] = _0xDecode("76382e382e38"),
+        [_0xDecode("57696e646f775469746c65")] = _0xDecode("564420485542207638e382e38"),
+        [_0xDecode("4c6f6164696e675469746c65")] = _0xDecode("564420485542"),
+        [_0xDecode("4c6f6164696e67537562746974c65")] = _0xDecode("56696f6c656e6365204469737472696374"),
+        Tabs = {
+            ESP = "ESP",
+            Player = "Player",
+            Killer = "Killer",
+            Visuals = "Visuals",
+            Settings = "Settings"
+        },
+        Sections = {
+            PlayerESP = "Player ESP",
+            ObjectESP = "Object ESP",
+            Speed = "Speed (Persistent)",
+            AutoAim = "Auto Aim + Auto Click",
+            AutoInteract = "Auto Interact (Gates, Items)",
+            Teleport = "Teleport",
+            Exploits = "Exploits",
+            NoCooldown = "No Cooldown",
+            Crosshair = "Crosshair",
+            Environment = "Environment",
+            Scripts = "Scripts",
+            Server = "Server",
+            Tools = "Tools",
+            Hub = "Hub"
+        },
+        Toggles = {
+            KillerESP = "Killer ESP",
+            SurvivorESP = "Survivor ESP",
+            GeneratorESP = "Generator ESP",
+            PalletESP = "Pallet ESP",
+            EnableSpeed = "Enable Speed Hack",
+            AutoClick = "Auto Click",
+            EnableAutoAim = "ENABLE AUTO AIM",
+            ForceTrigger = "Force Trigger Disabled Prompts",
+            AutoInteract = "Auto Interact (Gates/Doors)",
+            NoCooldown1 = "Mode 1: Instant",
+            NoCooldown2 = "Mode 2: Skip 10s",
+            EnableCrosshair = "Enable Crosshair",
+            CenterDot = "Center Dot",
+            Circle = "Circle",
+            NoFog = "No Fog",
+            Fullbright = "Fullbright"
+        },
+        Buttons = {
+            SpeedMinus = "Speed -1",
+            SpeedPlus = "Speed +1",
+            DebugPrompts = "Debug: Show Nearby Prompts",
+            RefreshList = "Refresh List",
+            Teleport = "Teleport",
+            Camera3D = "3D Camera",
+            NoFlash = "No Flash",
+            AutoGenerator = "Auto Generator",
+            AutoHeal = "Auto Heal",
+            Invisible = "Invisible",
+            Rejoin = "Rejoin",
+            InfiniteYield = "Infinite Yield",
+            DexExplorer = "Dex Explorer",
+            StopAll = "Stop All",
+            Destroy = "Destroy"
+        },
+        Dropdowns = {
+            SelectRole = "Select Your Role",
+            SelectPlayer = "Select Player",
+            TargetPart = "Target Part"
+        },
+        TargetPartOptions = {"Head", "Body", "Right Hand", "Left Hand"},
+        Sliders = {
+            AimDistance = "Aim Distance",
+            TriggerRange = "Trigger Range",
+            LineSize = "Line Size",
+            GapSize = "Gap Size",
+            CircleRadius = "Circle Radius"
+        },
+        ColorPickers = {
+            CrosshairColor = "Crosshair Color"
+        },
+        Labels = {
+            CurrentSpeed = "Current Speed: ",
+            Range = "Range: ",
+            Players = "Players: ",
+            Warning = "Enable ONE at a time!",
+            CrosshairMethod = "Method: "
+        },
+        RoleOptions = {"Survivor (Target Killers)", "Killer (Target Survivors)"},
+        Notify = {
+            Activated = "Activated",
+            SelectRole = "Select role first!",
+            Enabled = "Enabled - Range: ",
+            NoPrompts = "No prompts in range",
+            Found = "Found ",
+            SelectPlayer = "Select player first!",
+            Mode1 = "Mode 1",
+            Mode2 = "Mode 2",
+            Failed = "Failed",
+            AllStopped = "All stopped!",
+            Welcome = "Loaded!\nESP Ready\nPallet Fix Applied\nSpeed Anti-Reset"
+        }
+    }
+    
+    local _CoreURL = _0xURLs._0xCore
+    
+    local _FS, _CS = _T2(function()
+        return _G1:HttpGet(_CoreURL)
+    end)
+    
+    if not _FS or not _CS or _CS == "" then
+        return
+    end
+    
+    local _ES, _EE = _T2(function()
+        _T3(_CS)()
+    end)
+    
+    if not _ES then
+        return
+    end
+    
+    _T1.wait(1)
+    
+    _T2(function()
+        _RF:Notify({
+            Title = "VD HUB v8.8.8",
+            Content = "Core Loaded!\nSpeed Anti-Reset Active\nESP Ready",
+            Duration = 5
+        })
+    end)
+end)()
